@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "ba82bf74-008a-47bb-a233-d507a63e6226",
+		"name": "Contact Management App - Spring JWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var authorization = pm.response.headers.get(\"Authorization\");",
+							"pm.globals.set(\"auth_token\", authorization);",
+							"",
+							"console.info(pm.globals.get(\"auth_token\"));",
+							"",
+							"pm.response.to.have.status(200);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"admin\",\n    \"password\": \"test123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{test_url}}/auth/authenticate",
+					"host": [
+						"{{test_url}}"
+					],
+					"path": [
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.response.to.have.status(201);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Jagdeep\",\n    \"lastName\": \"Jain\",\n    \"email\": \"jagdeepjain-cm@cm.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{test_url}}/api/v1/contacts",
+					"host": [
+						"{{test_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Contacts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonResponse = pm.response.json();",
+							"var contactMgmtAppSchema = {",
+							"    \"$schema\": \"http://json-schema.org/draft-06/schema#\",",
+							"    \"type\": \"array\",",
+							"    \"items\": {",
+							"        \"$ref\": \"#/definitions/contactManagement\"",
+							"    },",
+							"    \"definitions\": {",
+							"        \"contactManagement\": {",
+							"            \"type\": \"object\",",
+							"            \"additionalProperties\": false,",
+							"            \"properties\": {",
+							"                \"id\": {",
+							"                    \"type\": \"integer\"",
+							"                },",
+							"                \"firstName\": {",
+							"                    \"type\": \"string\"",
+							"                },",
+							"                \"lastName\": {",
+							"                    \"type\": \"string\"",
+							"                },",
+							"                \"email\": {",
+							"                    \"type\": \"string\"",
+							"                }",
+							"            },",
+							"            \"required\": [",
+							"                \"email\",",
+							"                \"firstName\",",
+							"                \"id\",",
+							"                \"lastName\"",
+							"            ],",
+							"            \"title\": \"contactManagement\"",
+							"        }",
+							"    }",
+							"};",
+							"",
+							"pm.test('schema is valid', function() {",
+							"     pm.expect(tv4.validate(jsonResponse, contactMgmtAppSchema)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{test_url}}/api/v1/contacts",
+					"host": [
+						"{{test_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contacts",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"firstName\": \"Sudeep\", \"lastName\": \"Tripathy\", \"email\": \"st@learn-api-testing.com\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{test_url}}/api/v1/contacts/1004",
+					"host": [
+						"{{test_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"contacts",
+						"1004"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Contact",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{test_url}}/api/v1/contacts/1004",
+					"host": [
+						"{{test_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"contacts",
+						"1004"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Contact",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{test_url}}/api/v1/contacts/1004",
+					"host": [
+						"{{test_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"contacts",
+						"1004"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "test_url",
+			"value": "http://localhost:8080/app"
+		}
+	]
+}

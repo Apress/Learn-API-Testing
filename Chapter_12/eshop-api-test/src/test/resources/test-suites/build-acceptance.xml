@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="OneKlickShop Build Acceptance Tests" parallel="tests"
+       thread-count="5">
+    <test name="Create User API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.users.tests.AddUserTest"/>
+        </classes>
+    </test>
+    <!--test name="Delete User API Tests">
+      <classes>
+            <class name="DeleteUserTest"/>
+      </classes>
+    </test-->
+    <test name="Find User API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.users.tests.FindUserTest"/>
+        </classes>
+    </test>
+    <test name="List User API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.users.tests.UserPageTest"/>
+        </classes>
+    </test>
+    <test name="Update User API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.users.tests.UpdateUserTest"/>
+        </classes>
+    </test>
+    <test name="List Users API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.users.tests.UserPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Add User Billing Address API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.billing.address.tests.AddBillingAddressTest"/>
+        </classes>
+    </test>
+    <test name="Find User Billing Address API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.billing.address.tests.FindBillingAddressTest"/>
+        </classes>
+    </test>
+    <test name="Update User Billing Address API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.billing.address.tests.UpdateBillingAddressTest"/>
+        </classes>
+    </test>
+
+    <test name="Add User Shipping Address API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.shipping.address.tests.AddShippingAddressTest"/>
+        </classes>
+    </test>
+    <test name="Find User Shipping Address API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.shipping.address.tests.FindShippingAddressTest"/>
+        </classes>
+    </test>
+    <test name="Update User Shipping Address API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.shipping.address.tests.UpdateShippingAddressTest"/>
+        </classes>
+    </test>
+
+    <test name="Add User Payment Info API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.payment.tests.AddPaymentInfoTest"/>
+        </classes>
+    </test>
+    <test name="Find User Payment Info API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.payment.tests.FindPaymentInfoTest"/>
+        </classes>
+    </test>
+    <test name="Update User Payment Info API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.payment.tests.UpdatePaymentInfoTest"/>
+        </classes>
+    </test>
+
+    <test name="Add Product API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.products.tests.AddProductTest"/>
+        </classes>
+    </test>
+    <test name="Find Product API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.products.tests.FindProductTest"/>
+        </classes>
+    </test>
+    <test name="Update Product API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.products.tests.UpdateProductTest"/>
+        </classes>
+    </test>
+    <test name="List Products API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.products.tests.ProductPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Admin Authorization API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.authorization.tests.AdminAuthorizationTest"/>
+        </classes>
+    </test>
+    <test name="User Authorization API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.authorization.tests.UserAuthorizationTest"/>
+        </classes>
+    </test>
+
+    <test name="Admin Request Body API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.request.body.tests.AdminRequestBodyTest"/>
+        </classes>
+    </test>
+    <test name="Admin Request Header API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.request.headers.tests.AdminRequestHeaderTest"/>
+        </classes>
+    </test>
+
+    <test name="Error message API Tests">
+        <classes>
+            <class name="com.oneklickshop.api.error.tests.ErrorTest"/>
+        </classes>
+    </test>
+    <test name="User Model API Schema Tests">
+        <classes>
+            <class name="com.oneklickshop.api.users.tests.UserSchemaTest"/>
+        </classes>
+    </test>
+    <test name="Inactive Admin Login Test">
+        <classes>
+            <class name="com.oneklickshop.api.authorization.tests.InactiveAdminTest"/>
+        </classes>
+    </test>
+    <test name="Inactive User Login Test">
+        <classes>
+            <class name="com.oneklickshop.api.users.tests.InactiveUserTest"/>
+        </classes>
+    </test>
+    <test name="Deactivate User Test">
+        <classes>
+            <class name="com.oneklickshop.api.users.tests.DeactivateUserTest"/>
+        </classes>
+    </test>
+    <test name="Activate User Test">
+        <classes>
+            <class name="com.oneklickshop.api.users.tests.ActivateUserTest"/>
+        </classes>
+    </test>
+
+</suite>

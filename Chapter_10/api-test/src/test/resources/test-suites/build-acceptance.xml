@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Contact Management Build Acceptance Tests" parallel="tests"
+       thread-count="10">
+    <test name="Create Contact API Tests">
+        <classes>
+            <class name="com.contact.mgmt.api.tests.CreateContactTest"/>
+        </classes>
+    </test>
+</suite>

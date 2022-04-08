@@ -1,0 +1,31 @@
+Get the JWT Token
+POST /auth/authenticate
+
+curl -d '{"userName": "admin", "password": "test123"}' -H 'Content-Type: application/json' http://localhost:8080/app/auth/authenticate -v
+
+Copy the token from the above command and replace with the Bearer token.
+
+
+Create a Contact
+POST /api/v1/contacts
+
+curl -d '{ "firstName": "Firstname", "lastName": "Lastname", "email": "firstname@fl-testing.com"}' -H 'Content-Type: application/json' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0ODk2OTkxMiwiaWF0IjoxNjQ4OTY4MTEyfQ.VDbBzHLjjfDJgMmYZHwbR_l36l__0ZKy5XK8vhT3cZM' http://localhost:8080/app/api/v1/contacts -v
+
+The contact created is having the contactId as 1004 since we already have 1000, 1001, 1002 and 1003 in the database.
+
+
+Find the Contact
+GET /api/v1/contacts/1004
+
+curl -H 'Content-Type: application/json' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0ODk2OTkxMiwiaWF0IjoxNjQ4OTY4MTEyfQ.VDbBzHLjjfDJgMmYZHwbR_l36l__0ZKy5XK8vhT3cZM' http://localhost:8080/app/api/v1/contacts/1004 -v
+
+Update the Contact
+PUT /api/v1/contacts/1004
+
+curl -d '{ "firstName": "Sudeep", "lastName": "Tripathy", "email": "st@learn-api-testing.com"}' -H 'Content-Type: application/json' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0ODk2OTkxMiwiaWF0IjoxNjQ4OTY4MTEyfQ.VDbBzHLjjfDJgMmYZHwbR_l36l__0ZKy5XK8vhT3cZM' -X PUT http://localhost:8080/app/api/contacts/1004 -v
+
+
+Delete the Contact
+DELETE /api/v1/contacts/1004
+
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0ODk2OTkxMiwiaWF0IjoxNjQ4OTY4MTEyfQ.VDbBzHLjjfDJgMmYZHwbR_l36l__0ZKy5XK8vhT3cZM' -X DELETE http://localhost:8080/app/api/v1/contacts/1004 -v

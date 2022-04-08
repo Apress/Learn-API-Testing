@@ -1,0 +1,1200 @@
+{
+  "info": {
+    "_postman_id": "71f2e4d4-0fee-48b6-b4fd-8b3b06ddc5b2",
+    "name": "One Klick Shop App - API Tests",
+    "description": "One Klick Shop API Endpoints Test Suite",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User Management",
+      "item": [
+        {
+          "name": "List Users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/users?size=50",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "size",
+                  "value": "50"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var value = pm.globals.get(\"user_id\");",
+                  "pm.globals.set(\"user_id\", value+1);",
+                  "console.info(pm.globals.get(\"user_id\"));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/users/{{userId}}",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find User",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/users/{{userId}}",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"jdoe@test-eng.com\",\n  \"enabled\": true,\n  \"firstname\": \"John Doe\",\n  \"lastname\": \"John Doe\",\n  \"username\": \"jdoe@test-eng.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/users/{{userId}}",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.response.to.have.status(201);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstname\": \"Shashi\",\n    \"lastname\": \"Lohati\",\n    \"username\": \"sl@sl.com\",\n    \"email\": \"sl@sl.com\",\n    \"password\": \"$2a$10$cyztG895P5ViBcTF7WM60eQ7TRreIvXdNc/WWIgBIQT563PhOyCGe\",\n    \"enabled\": true,\n    \"createdAt\": \"2022-03-21T15:00:40.000+00:00\",\n    \"roles\": [\n        {\n            \"authority\": \"ROLE_USER\"\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/users",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Billing Address",
+      "item": [
+        {
+          "name": "Find Billing Address",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/billing/address",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "billing",
+                "address"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Billing Address",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address1\": \"Billing Address 1\",\n  \"address2\": \"Billing Address 2\",\n  \"city\": \"Mumbai\",\n  \"country\": \"India\",\n  \"createdAt\": \"2008-11-22T20:30:40\",\n  \"state\": \"Maharashtra\",\n  \"updatedAt\": \"2008-11-22T20:30:40\",\n  \"zip\": \"343234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/billing/address",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "billing",
+                "address"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Billing Address",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address1\": \"Johnyd\",\n  \"address2\": \"Johndy\",\n  \"city\": \"Mumbai\",\n  \"country\": \"string\",\n  \"createdAt\": \"2008-11-22T20:30:40\",\n  \"state\": \"user state\",\n  \"updatedAt\": \"2008-11-22T20:30:40\",\n  \"zip\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/billing/address",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "billing",
+                "address"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Shipping Address",
+      "item": [
+        {
+          "name": "Find Shipping Address",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/shipping/address",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "shipping",
+                "address"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Shipping Address",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address1\": \"Shipping Address 1\",\n  \"address2\": \"Shipping Address 2\",\n  \"city\": \"Mumbai\",\n  \"country\": \"string\",\n  \"createdAt\": \"2008-11-22T20:30:40\",\n  \"state\": \"user state\",\n  \"updatedAt\": \"2008-11-22T20:30:40\",\n  \"zip\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/shipping/address",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "shipping",
+                "address"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Shipping Address",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address1\": \"John\",\n  \"address2\": \"John\",\n  \"city\": \"Mumbai\",\n  \"country\": \"string\",\n  \"createdAt\": \"2008-11-22T20:30:40\",\n  \"state\": \"user state\",\n  \"updatedAt\": \"2008-11-22T20:30:40\",\n  \"zip\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/shipping/address",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "shipping",
+                "address"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "Find Payment Details",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/payment",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "payment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Payment Details",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardExpiry\": \"12/2027\",\n  \"cardNumber\": \"1234 1234 1234 1234\",\n  \"createdAt\": \"2008-11-22T20:30:40\",\n  \"nameOnCard\": \"John Doe\",\n  \"updatedAt\": \"2008-11-22T20:30:40\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/payment",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "payment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Payment Details",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardExpiry\": \"12/2022\",\n  \"cardNumber\": \"1234 1234 1234 1234\",\n  \"createdAt\": \"2008-11-22T20:30:40\",\n  \"nameOnCard\": \"John Doe\",\n  \"updatedAt\": \"2008-11-22T20:30:40\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/payment",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "payment"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "List Products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/products?filter=category,asc",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": null,
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "category,asc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Products",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/products/{{productId}}",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product Details",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"category\": \"Mobile Phone\",\n    \"name\": \"BestEver A10 Series\",\n    \"shortDescription\": \"One of the Best Phone Camera ever launched by any manufacturer\",\n    \"cost\": 59000.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/products/{{productId}}",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"category\": \"Mobile Phone\",\n    \"name\": \"BestEver A10 Series\",\n    \"shortDescription\": \"One of the Best Phone Camera ever launched by any manufacturer\",\n    \"cost\": 59000.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/products",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Shopping Cart",
+      "item": [
+        {
+          "name": "Add Cart Item",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/cart/1013/quantity/2",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "cart",
+                "1013",
+                "quantity",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Cart",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/cart",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "cart"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order History",
+      "item": [
+        {
+          "name": "Submit Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/orders",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Order History",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test_url}}/api/v1/user/orders",
+              "host": [
+                "{{test_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var JsonResponse = JSON.parse(responseBody);",
+              "pm.globals.set(\"auth_token\", JsonResponse.token);",
+              "",
+              "console.info(pm.globals.get(\"auth_token\"));",
+              "",
+              "pm.response.to.have.status(200);"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin@oneklickshop.com\",\n    \"password\": \"test123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{test_url}}/login",
+          "host": [
+            "{{test_url}}"
+          ],
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "test_url",
+      "value": "http://localhost:8080/eshop"
+    },
+    {
+      "key": "userId",
+      "value": "{{user_id}}",
+      "type": "string"
+    },
+    {
+      "key": "productId",
+      "value": "1007",
+      "type": "string"
+    }
+  ]
+}

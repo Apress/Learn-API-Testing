@@ -1,0 +1,14 @@
+{
+  "firstname": null,
+  "lastname": null,
+  "username": null,
+  "email": null,
+  "password": null,
+  "enabled": true,
+  "createdAt": null,
+  "roles": [
+    {
+      "authority": null
+    }
+  ]
+}

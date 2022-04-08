@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/userManagement",
+  "definitions": {
+    "userManagement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Role"
+          }
+        },
+        "billingAddress": {
+          "type": "null"
+        },
+        "shippingAddress": {
+          "type": "null"
+        },
+        "payment": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "billingAddress",
+        "createdAt",
+        "email",
+        "enabled",
+        "firstname",
+        "id",
+        "lastname",
+        "password",
+        "payment",
+        "roles",
+        "shippingAddress",
+        "updatedAt",
+        "username"
+      ],
+      "title": "userManagement"
+    },
+    "Role": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "authority": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "authority"
+      ],
+      "title": "Role"
+    }
+  }
+}

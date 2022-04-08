@@ -1,0 +1,9 @@
+{
+  "address1": "Billing Address 1",
+  "address2": "Billing Address 2",
+  "city": "Mumbai",
+  "country": "India",
+  "createdAt": "2008-11-22T20:30:40",
+  "state": "Maharashtra",
+  "zip": "460001"
+}

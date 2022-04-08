@@ -1,0 +1,7 @@
+{
+  "email": "required-fields@test-eng.com",
+  "enabled": true,
+  "firstname": "Required",
+  "lastname": "Test",
+  "username": "required-fields@test-eng.com"
+}
