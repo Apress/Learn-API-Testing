@@ -10,3 +10,7 @@ OpenJDK Runtime Environment (Zulu 8.60.0.21-CA-macos-aarch64) (build 1.8.0_322-b
 OpenJDK 64-Bit Server VM (Zulu 8.60.0.21-CA-macos-aarch64) (build 25.322-b06, mixed mode)
 ```
 Install the applicable tomcat binaries for Apple MacOS M1 Chipset and deploy the war file in the `/webapps` folder.
+
+Windows users can navigate to the local tomcat installations and under `/bin` folder, by executing `startup.bat` local application can be started.
+
+For non windows users use `/startup.sh` script to start the applicaiton in local environment.
