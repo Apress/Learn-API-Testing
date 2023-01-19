@@ -23,4 +23,8 @@ For Contact Management APIs, copy the [Contact Management Web Archive](https://g
 
 For eShop APIs, copy the [eShop Web Archive](https://github.com/Apress/Learn-API-Testing/blob/main/Appendix-C/eshop.war) under local installation of Tomcat inside `/webapps` folder and start the server by executing `/bin/startup.bat`, use [eShop Postman Script](https://github.com/Apress/Learn-API-Testing/tree/main/Chapter_12/postman-tests) to check the JWT.
 
+### Browser
+Note that the APIs are based on JWT authentication so if you hit the URL from the browser then the application will not work since it needs the JWT as one of the header. Always use Postman for testing and writing test script.
+
+Chapter 11 demonstrate the usage of Swagger, if you want to try browser then use the Swagger for browser based testing.
 
