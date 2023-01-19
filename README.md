@@ -14,3 +14,13 @@ Install the applicable tomcat binaries for Apple MacOS M1 Chipset and deploy the
 Windows users can navigate to the local tomcat installations and under `/bin` folder, by executing `startup.bat` local application can be started.
 
 For non windows users use `/startup.sh` script to start the applicaiton in local environment.
+
+## FAQ
+### Issue with Windows-Docker Setup 
+On Windows machine sometimes the docker setup may not work due to some reason.
+
+For Contact Management APIs, copy the [Contact Management Web Archive](https://github.com/Apress/Learn-API-Testing/blob/main/Appendix-B/app.war) under local installation of Tomcat inside `/webapps` folder and start the server by executing `/bin/startup.bat`, use [Contact Management Postman Script]( https://github.com/Apress/Learn-API-Testing/tree/main/Chapter_06/postman-tests) to check the JWT.
+
+For eShop APIs, copy the [eShop Web Archive](https://github.com/Apress/Learn-API-Testing/blob/main/Appendix-C/eshop.war) under local installation of Tomcat inside `/webapps` folder and start the server by executing `/bin/startup.bat`, use [eShop Postman Script](https://github.com/Apress/Learn-API-Testing/tree/main/Chapter_12/postman-tests) to check the JWT.
+
+
